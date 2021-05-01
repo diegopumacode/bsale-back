@@ -2,7 +2,7 @@
   "name": "bsale-back",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,9 +24,12 @@
     "typescript": "^4.2.3"
   },
   "scripts": {
-    "start": "ts-node ./src/server.ts",
-    "start:watch": "nodemon",
-    "build": "tsc"
+    "build-ts": "tsc",
+    "postinstall": "npm run build-ts",
+    "start": "npm run serve",
+    "serve": "node dist/server.js",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w"
   },
   "nodemonConfig": {
     "ignore": [
