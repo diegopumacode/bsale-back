@@ -11,7 +11,7 @@ export default class ProductController {
   public initializeRoutes() {
     this.router.get(`${this.path}/category/:id`, this.getProductByCategory);
     this.router.get(`${this.path}/search/:name`, this.getProductsByName);
-    
+    this.router.get(this.path, this.getProducts);    
   }
 
   public async getProductByCategory(req: express.Request, res: express.Response) {
@@ -26,6 +26,13 @@ export default class ProductController {
         if(err) throw err;
         return res.json(rows);
     }) 
+  }
+
+  public async getProducts(req: express.Request, res: express.Response) {
+    app.db.query('select * from product',(err,rows,fields)=>{
+        if(err) throw err;
+        return res.json(rows);
+    })
   }
 
 }
