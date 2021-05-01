@@ -4,14 +4,14 @@ import * as dotenv from 'dotenv';
 
 export default class App {
   public app: express.Application;
-  public port: number;
+  public port: any;
   public db: any;
 
   constructor(controllers: any[], port: number) {
     dotenv.config();
 
     this.app = express();
-    this.port = port;
+    this.port = process.env.PORT || 5000;
     this.initializeDB()
     this.initializeMiddleware();
     this.initializeControllers(controllers);
