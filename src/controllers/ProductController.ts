@@ -22,7 +22,7 @@ export default class ProductController {
   }
   
   public async getProductsByName(req: express.Request, res: express.Response){
-    app.db.query(`select * from product where product.name LIKE "${req.params.name}%"`,(err,rows,fields)=>{
+    app.db.query(`select * from product where product.name LIKE "%${req.params.name}%"`,(err,rows,fields)=>{
         if(err) throw err;
         return res.json(rows);
     }) 
